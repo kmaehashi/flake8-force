@@ -11,7 +11,7 @@ setuptools.setup(
     packages=["flake8_force"],
     entry_points={
         "flake8.extension": [
-            "E9 = flake8_force:Flake8Force",
+            "flake8_force = flake8_force:Flake8Force",
         ],
     },
     classifiers=[
