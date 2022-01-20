@@ -3,6 +3,9 @@ import tokenize
 import flake8.checker
 
 
+_enabled = (4 <= int(flake8.__version__.split('.')[0]))
+
+
 class ForceFileChecker(flake8.checker.FileChecker):
     """FileChecker that ignores AST build failure."""
 
@@ -26,7 +29,8 @@ class ForceFileChecker(flake8.checker.FileChecker):
             )
 
 
-flake8.checker.FileChecker = ForceFileChecker
+if _enabled:
+    flake8.checker.FileChecker = ForceFileChecker
 
 
 class Flake8Force:
@@ -41,10 +45,13 @@ class Flake8Force:
 
     @staticmethod
     def add_options(optmanager):
+        help = "Force running check even when failed to parse a file"
+        if not _enabled:
+            help += " (hint: only effective in flake8 v4+)"
         optmanager.add_option(
             "--force-check",
             action="store_true",
             parse_from_config=True,
             default=False,
-            help="Force running check even when failed to parse a file",
+            help=help,
         )
