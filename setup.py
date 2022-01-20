@@ -28,6 +28,7 @@ setuptools.setup(
             "flake8_force = flake8_force:Flake8Force",
         ],
     },
+    install_requires=['flake8'],
     classifiers=[
         "Framework :: Flake8",
         "License :: OSI Approved :: MIT License",
