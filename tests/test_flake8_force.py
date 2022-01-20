@@ -4,7 +4,7 @@ import subprocess
 
 
 def _flake8(test_input, *, cython=False, force=False):
-    args = ["flake8"]
+    args = ["flake8", "--isolated"]
     if cython:
         args += ["--ignore", "E999"]
     if force:
