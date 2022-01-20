@@ -1,5 +1,8 @@
 # flake8-force
 
+[![PyPI](https://img.shields.io/pypi/v/flake8-force.svg)](https://pypi.python.org/pypi/flake8-force)
+[![Test](https://github.com/kmaehashi/flake8-force/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kmaehashi/flake8-force/actions/workflows/test.yml)
+
 Flake8 extension that provides `force-check` option.
 
 When this option is enabled, flake8 performs all checks even if the target file cannot be interpreted as a Python source code (e.g., when there is a syntax error in the file).
