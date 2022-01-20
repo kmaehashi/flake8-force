@@ -2,6 +2,8 @@ import tokenize
 
 import flake8.checker
 
+from ._version import __version__
+
 
 _enabled = (4 <= int(flake8.__version__.split('.')[0]))
 
@@ -35,7 +37,7 @@ if _enabled:
 
 class Flake8Force:
     name = "flake8-force"
-    version = "0.0.1"
+    version = __version__
 
     def __init__(self, tree):
         pass

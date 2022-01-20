@@ -1,10 +1,24 @@
+import os
+
 import setuptools
+
+
+def _read(path):
+    with open(os.path.join(os.path.dirname(__file__), path)) as f:
+        return f.read()
+
+
+# Get `__version__`
+exec(_read("src/flake8_force/_version.py"))
+
 
 setuptools.setup(
     name="flake8-force",
     license="MIT",
-    version="0.0.1",
+    version=__version__,  # NOQA
     description="flake8 extension to force running check",
+    long_description=_read("README.md"),
+    long_description_content_type="text/markdown",
     author="Kenichi Maehashi",
     url="https://github.com/kmaehashi/flake8-force",
     package_dir={"": "src/"},
