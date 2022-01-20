@@ -21,19 +21,18 @@ jobs:
         run: |
           pip install -v .
 
-      - name: Show environment
+      - name: Setup test environment
         run: |
-          env
           python -V
+          pip install pytest
           pip freeze
 
       - name: Run tests
         run: |
           pushd tests
-          pip install pytest
           python -m pytest .
           popd
 
       - name: Run flake8
         run: |
-          flake8 .
+          flake8
