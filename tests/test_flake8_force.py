@@ -20,7 +20,7 @@ def _flake8(test_input, *, cython=False, force=False):
     results = []
     for line in proc.stdout.splitlines():
         m = re.fullmatch(r"(.+?):(\d+):(\d+): (.+?) (.+?)", line)
-        assert m is not None, f'unexpected output: {line}'
+        assert m is not None, f'unexpected output: {proc.stdout}'
         results.append(
             (int(m.group(2)), int(m.group(3)), m.group(4), m.group(5)))
     return results
