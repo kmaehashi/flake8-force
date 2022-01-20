@@ -30,6 +30,7 @@ jobs:
       - name: Run tests
         run: |
           pushd tests
+          pip install pytest
           python -m pytest .
           popd
 
