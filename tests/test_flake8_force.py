@@ -37,23 +37,33 @@ def test_fail():
 
 
 def test_token():
-    assert _flake8("token.py") == [
-        (1, 1, "E999", "SyntaxError: unexpected EOF while parsing"),
-    ]
-    assert _flake8("token.py", force=True) == [
-        (1, 1, "E999", "SyntaxError: unexpected EOF while parsing"),
-        (2, 1, "E902", "TokenError: EOF in multi-line statement"),
-    ]
+    results = _flake8("token.py")
+    assert len(results) == 1
+    assert results[0][0] == 1
+    assert results[0][2] == "E999"
+    assert "SyntaxError" in results[0][3]
+
+    results_force = _flake8("token.py", force=True)
+    assert len(results_force) == 2
+    assert results_force[0] == results[0]
+    assert results_force[1][0] == 2
+    assert results_force[1][2] == "E902"
+    assert "TokenError" in results_force[1][3]
 
 
 def test_indent():
-    assert _flake8("indent.py") == [
-        (4, 4, "E999", "IndentationError: unexpected indent"),
-    ]
-    assert _flake8("indent.py", force=True) == [
-        (4, 4, "E999", "IndentationError: unexpected indent"),
-        (4, 5, "E113", "unexpected indentation"),
-    ]
+    results = _flake8("indent.py")
+    assert len(results) == 1
+    assert results[0][0] == 4
+    assert results[0][2] == "E999"
+    assert "IndentationError" in results[0][3]
+
+    results_force = _flake8("indent.py", force=True)
+    assert len(results_force) == 2
+    assert results_force[0] == results[0]
+    assert results_force[1][0] == 4
+    assert results_force[1][2] == "E113"
+    assert "unexpected indentation" in results_force[1][3]
 
 
 def test_cython_valid():
