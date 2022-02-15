@@ -20,3 +20,30 @@ pip install flake8-force
 
 * Specify the option via the command line: `flake8 --force-check ...`.
 * Add `force-check = True` to the flake8 configuration file.
+
+## Tips for checking Cython code
+
+While this extension "forces" flake8 to ignore problems with parsing Cython syntax as Python code, flake8 must be separately configured to permit Cython syntax through ignoring certain rules.
+The configuration below is suggested for that purpose.
+Some projects may not need to ignore every rule, depending on the use of Cython.
+```ini
+[flake8]
+filename = *.py,*.pyx,*.pxd,*.pxi
+ignore = E203,E225,E226,E227,E402,E741,E901,E999,W503,W504
+force-check = True
+```
+
+## Pre-commit hook
+
+The configuration below can be used with [pre-commit](https://pre-commit.com/) to install this extension alongside flake8 and enable checking Cython files.
+Also see the [flake8 docs on version control hooks](https://flake8.pycqa.org/en/latest/user/using-hooks.html).
+
+```yaml
+-   repo: https://github.com/PyCQA/flake8
+    rev: ''  # Pick a git hash / tag to point to
+    hooks:
+    -   id: flake8
+        types: ["file"]  # Override the default types (only python)
+        types_or: ["python", "cython"]  # Support both python and cython types
+        additional_dependencies: ["flake8-force"]  # Add this extension
+```
