@@ -26,6 +26,7 @@ pip install flake8-force
 While this extension "forces" flake8 to ignore problems with parsing Cython syntax as Python code, flake8 must be separately configured to permit Cython syntax through ignoring certain rules.
 The configuration below is suggested for that purpose.
 Some projects may not need to ignore every rule, depending on the use of Cython.
+The [pycodestyle docs](https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes) define what each rule means.
 ```ini
 [flake8]
 filename = *.py,*.pyx,*.pxd,*.pxi
