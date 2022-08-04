@@ -18,8 +18,10 @@ pip install flake8-force
 
 ## Usage
 
-* Specify the option via the command line: `flake8 --force-check ...`.
-* Add `force-check = True` to the flake8 configuration file.
+You can enable the `flake8-force` plugin by either:
+
+* Specifying the option via the command line: `flake8 --force-check ...`.
+* Adding `force-check = True` to the flake8 configuration file.
 
 ## Tips for checking Cython code
 
@@ -27,6 +29,7 @@ While this extension "forces" flake8 to ignore problems with parsing Cython synt
 The configuration below is suggested for that purpose.
 Some projects may not need to ignore every rule, depending on the use of Cython.
 The [pycodestyle docs](https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes) define what each rule means.
+
 ```ini
 [flake8]
 filename = *.py,*.pyx,*.pxd,*.pxi
