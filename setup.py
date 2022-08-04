@@ -25,7 +25,7 @@ setuptools.setup(
     packages=["flake8_force"],
     entry_points={
         "flake8.extension": [
-            "flake8_force = flake8_force:Flake8Force",
+            "FRC000 = flake8_force:Flake8Force",
         ],
     },
     install_requires=['flake8'],
