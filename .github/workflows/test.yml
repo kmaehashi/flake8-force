@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.10']
+        flake8-version: ['4.*', '5.*']
 
     steps:
       - name: Git Checkout
@@ -24,6 +25,7 @@ jobs:
 
       - name: Install flake8-force
         run: |
+          pip install "flake8==${{ matrix.flake8-version }}"
           pip install -v .
 
       - name: Setup test environment
