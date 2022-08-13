@@ -30,20 +30,23 @@ def test_valid():
     assert _flake8("valid.py") == _flake8("valid.py", force=True) == []
 
 
-def test_fail():
-    assert _flake8("fail.py") == _flake8("fail.py", force=True) == [
-        (2, 1, "F401", "'os' imported but unused"),
-    ]
+def test_invalid_unused():
+    assert (
+        _flake8("invalid_unused.py") ==
+        _flake8("invalid_unused.py", force=True) == [
+            (2, 1, "F401", "'os' imported but unused"),
+        ]
+    )
 
 
-def test_token():
-    results = _flake8("token.py")
+def test_invalid_token():
+    results = _flake8("invalid_token.py")
     assert len(results) == 1
     assert results[0][0] == 1
     assert results[0][2] == "E999"
     assert "SyntaxError" in results[0][3]
 
-    results_force = _flake8("token.py", force=True)
+    results_force = _flake8("invalid_token.py", force=True)
     assert len(results_force) == 2
     assert results_force[0] == results[0]
     assert results_force[1][0] == 2
@@ -51,14 +54,14 @@ def test_token():
     assert "TokenError" in results_force[1][3]
 
 
-def test_indent():
-    results = _flake8("indent.py")
+def test_invalid_indent():
+    results = _flake8("invalid_indent.py")
     assert len(results) == 1
     assert results[0][0] == 4
     assert results[0][2] == "E999"
     assert "IndentationError" in results[0][3]
 
-    results_force = _flake8("indent.py", force=True)
+    results_force = _flake8("invalid_indent.py", force=True)
     assert len(results_force) == 2
     assert results_force[0] == results[0]
     assert results_force[1][0] == 4
@@ -66,14 +69,14 @@ def test_indent():
     assert "unexpected indentation" in results_force[1][3]
 
 
-def test_cython_valid():
+def test_valid_cython():
     assert (
-        _flake8("cython_valid.pyx", cython=True) ==
-        _flake8("cython_valid.pyx", cython=True, force=True) == [])
+        _flake8("valid_cython.pyx", cython=True) ==
+        _flake8("valid_cython.pyx", cython=True, force=True) == [])
 
 
-def test_cython_fail():
-    assert _flake8("cython_fail.pyx", cython=True) == []
-    assert _flake8("cython_fail.pyx", cython=True, force=True) == [
+def test_invalid_cython():
+    assert _flake8("invalid_cython.pyx", cython=True) == []
+    assert _flake8("invalid_cython.pyx", cython=True, force=True) == [
         (6, 1, "E302", "expected 2 blank lines, found 0"),
     ]
