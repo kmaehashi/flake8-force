@@ -69,7 +69,7 @@ def test_indent():
 def test_cython_valid():
     assert (
         _flake8("cython_valid.pyx", cython=True) ==
-        _flake8("cython_valid.pyx", cython=True) == [])
+        _flake8("cython_valid.pyx", cython=True, force=True) == [])
 
 
 def test_cython_fail():
