@@ -15,11 +15,14 @@ jobs:
         flake8: [
             'flake8==4.*',
             'flake8==5.*',
+            'flake8==6.*',
             'git+https://github.com/pycqa/flake8.git@main',
         ]
         exclude:
         - python: '3.7'
           flake8: 'git+https://github.com/pycqa/flake8.git@main'
+        - python: '3.7'
+          flake8: 'flake8==6.*'
 
     steps:
       - name: Git Checkout
