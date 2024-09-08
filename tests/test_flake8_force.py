@@ -57,10 +57,17 @@ def test_invalid_token():
 
     results_force = _flake8("invalid_token.py", force=True)
     assert len(results_force) == 2
-    assert results_force[0] == results[0]
-    assert results_force[1].row == 2
-    assert results_force[1].code == "E902"
-    assert "TokenError" in results_force[1].text
+    if results_force[0] == results[0]:
+        # Python 3.11 or earlier
+        token_error = results_force[1]
+        assert token_error.row == 2
+    else:
+        # Python 3.12+
+        assert results_force[1] == results[0]  # SyntaxError
+        token_error = results_force[0]
+        assert token_error.row == 1
+    assert token_error.code == "E902"
+    assert "TokenError" in token_error.text
 
 
 def test_invalid_indent():
