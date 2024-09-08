@@ -23,9 +23,11 @@ jobs:
         - python: '3.7'
           flake8: 'git+https://github.com/pycqa/flake8.git@main'
         - python: '3.7'
-          flake8: 'flake8==6.*'
-        - python: '3.7'
           flake8: 'flake8==7.*'
+        - python: '3.7'
+          flake8: 'flake8==6.*'
+        - python: '3.12'
+          flake8: 'flake8==4.*'
 
     steps:
       - name: Git Checkout
