@@ -11,15 +11,11 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        python: ['3.10', '3.11', '3.12', '3.13', '3.14']
+        python: ['3.11', '3.12', '3.13', '3.14', '3.15']
         flake8: [
             'flake8==7.*',
             'git+https://github.com/pycqa/flake8.git@main',
         ]
-        exclude:
-          # flake8 main requires Python 3.11+
-          - python: '3.10'
-            flake8: 'git+https://github.com/pycqa/flake8.git@main'
 
     steps:
       - name: Git Checkout

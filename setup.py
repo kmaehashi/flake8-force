@@ -29,6 +29,7 @@ setuptools.setup(
         ],
     },
     install_requires=['flake8'],
+    python_requires='>=3.11',
     classifiers=[
         "Framework :: Flake8",
         "License :: OSI Approved :: MIT License",
